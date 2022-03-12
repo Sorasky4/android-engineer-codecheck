@@ -8,14 +8,14 @@ import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import jp.co.yumemi.android.code_check.R
 import jp.co.yumemi.android.code_check.TopActivity
-import jp.co.yumemi.android.code_check.model.entity.item
+import jp.co.yumemi.android.code_check.model.entity.Item
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 import org.json.JSONObject
 import java.util.*
 
 class SearchRepository {
-    suspend fun getRepositories(context: Context, inputText: String): List<item> {
+    suspend fun getRepositories(context: Context, inputText: String): List<Item> {
         val client = HttpClient(Android)
 
         return GlobalScope.async {
@@ -29,7 +29,7 @@ class SearchRepository {
 
             val jsonItems = jsonBody.optJSONArray("items")!!
 
-            val items = mutableListOf<item>()
+            val items = mutableListOf<Item>()
 
             /**
              * アイテムの個数分ループする
@@ -45,7 +45,7 @@ class SearchRepository {
                 val openIssuesCount = jsonItem.optLong("open_issues_count")
 
                 items.add(
-                    item(
+                    Item(
                         name = name,
                         ownerIconUrl = ownerIconUrl,
                         language = context.getString(R.string.written_language, language),

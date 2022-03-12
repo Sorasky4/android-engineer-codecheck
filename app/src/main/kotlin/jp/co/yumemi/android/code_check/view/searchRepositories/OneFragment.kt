@@ -12,7 +12,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.*
 import jp.co.yumemi.android.code_check.R
 import jp.co.yumemi.android.code_check.databinding.FragmentOneBinding
-import jp.co.yumemi.android.code_check.model.entity.item
+import jp.co.yumemi.android.code_check.model.entity.Item
 import jp.co.yumemi.android.code_check.viewmodel.OneViewModel
 
 class OneFragment : Fragment(R.layout.fragment_one) {
@@ -29,8 +29,8 @@ class OneFragment : Fragment(R.layout.fragment_one) {
         val _dividerItemDecoration =
             DividerItemDecoration(context!!, _layoutManager.orientation)
         val _adapter = CustomAdapter(object : CustomAdapter.OnItemClickListener {
-            override fun itemClick(item: item) {
-                gotoRepositoryFragment(item)
+            override fun itemClick(Item: Item) {
+                gotoRepositoryFragment(Item)
             }
         })
 
@@ -57,9 +57,9 @@ class OneFragment : Fragment(R.layout.fragment_one) {
         })
     }
 
-    fun gotoRepositoryFragment(item: item) {
+    fun gotoRepositoryFragment(Item: Item) {
         val _action = OneFragmentDirections
-            .actionRepositoriesFragmentToRepositoryFragment(item = item)
+            .actionRepositoriesFragmentToRepositoryFragment(item = Item)
         findNavController().navigate(_action)
     }
 }

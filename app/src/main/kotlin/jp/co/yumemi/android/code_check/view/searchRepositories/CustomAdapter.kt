@@ -8,16 +8,16 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import jp.co.yumemi.android.code_check.R
-import jp.co.yumemi.android.code_check.model.entity.item
+import jp.co.yumemi.android.code_check.model.entity.Item
 
 // リストの変更を検知
-private object DiffCallBack: DiffUtil.ItemCallback<item>() {
-    override fun areItemsTheSame(oldItem: item, newItem: item): Boolean
+private object DiffCallBack: DiffUtil.ItemCallback<Item>() {
+    override fun areItemsTheSame(oldItem: Item, newItem: Item): Boolean
     {
         return oldItem.name == newItem.name
     }
 
-    override fun areContentsTheSame(oldItem: item, newItem: item): Boolean
+    override fun areContentsTheSame(oldItem: Item, newItem: Item): Boolean
     {
         return oldItem == newItem
     }
@@ -25,12 +25,12 @@ private object DiffCallBack: DiffUtil.ItemCallback<item>() {
 
 class CustomAdapter(
     private val itemClickListener: OnItemClickListener,
-) : ListAdapter<item, CustomAdapter.ViewHolder>(DiffCallBack) {
+) : ListAdapter<Item, CustomAdapter.ViewHolder>(DiffCallBack) {
 
     class ViewHolder(view: View): RecyclerView.ViewHolder(view)
 
     interface OnItemClickListener{
-        fun itemClick(item: item)
+        fun itemClick(Item: Item)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder

@@ -8,7 +8,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import jp.co.yumemi.android.code_check.model.entity.item
+import jp.co.yumemi.android.code_check.model.entity.Item
 import jp.co.yumemi.android.code_check.repository.api.SearchRepository
 import kotlinx.coroutines.launch
 
@@ -17,8 +17,8 @@ import kotlinx.coroutines.launch
  */
 class OneViewModel(application: Application): AndroidViewModel(application) {
     private val context get() = getApplication<Application>().applicationContext
-    private val _data = MutableLiveData<List<item>>()
-    val data: LiveData<List<item>> get() = _data
+    private val _data = MutableLiveData<List<Item>>()
+    val data: LiveData<List<Item>> get() = _data
 
     // 検索結果
     fun searchResults(inputText: String){
