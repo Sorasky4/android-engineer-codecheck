@@ -14,6 +14,8 @@ import kotlinx.coroutines.async
 import org.json.JSONObject
 import java.util.*
 
+// TODO: エラーハンドリングをする
+// 通信時, JSONObject生成時のハンドリング
 class SearchRepository {
     suspend fun getRepositories(context: Context, inputText: String): List<Item> {
         val client = HttpClient(Android)
