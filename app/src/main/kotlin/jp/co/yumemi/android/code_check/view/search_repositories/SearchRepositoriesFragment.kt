@@ -19,7 +19,7 @@ import jp.co.yumemi.android.code_check.viewmodel.SearchRepositoriesViewModel
  * リポジトリ検索画面
  */
 class SearchRepositoriesFragment : Fragment(R.layout.fragment_search_repositories) {
-    val viewModel: SearchRepositoriesViewModel by viewModels()
+    private val viewModel: SearchRepositoriesViewModel by viewModels()
     private var _binding: FragmentSearchRepositoriesBinding? = null
     private val binding get() = _binding!!
 
@@ -28,9 +28,9 @@ class SearchRepositoriesFragment : Fragment(R.layout.fragment_search_repositorie
 
         _binding = FragmentSearchRepositoriesBinding.bind(view)
 
-        val layoutManager = LinearLayoutManager(context!!)
+        val layoutManager = LinearLayoutManager(context)
         val dividerItemDecoration =
-            DividerItemDecoration(context!!, layoutManager.orientation)
+            DividerItemDecoration(context, layoutManager.orientation)
         val adapter = SearchRepositoryAdapter(object : SearchRepositoryAdapter.OnItemClickListener {
             override fun itemClick(Item: Item) {
                 gotoRepositoryFragment(Item)
