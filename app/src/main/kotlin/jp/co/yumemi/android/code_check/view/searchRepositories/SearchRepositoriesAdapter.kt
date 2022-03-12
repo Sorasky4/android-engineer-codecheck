@@ -21,9 +21,12 @@ private object DiffCallBack : DiffUtil.ItemCallback<Item>() {
     }
 }
 
-class CustomAdapter(
+/**
+ * リポジトリ検索画面に表示するRecyclerViewのAdapter
+ */
+class SearchRepositoryAdapter(
     private val itemClickListener: OnItemClickListener,
-) : ListAdapter<Item, CustomAdapter.ViewHolder>(DiffCallBack) {
+) : ListAdapter<Item, SearchRepositoryAdapter.ViewHolder>(DiffCallBack) {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view)
 
