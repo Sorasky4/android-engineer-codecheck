@@ -13,6 +13,9 @@ import jp.co.yumemi.android.code_check.R
 import jp.co.yumemi.android.code_check.TopActivity.Companion.lastSearchDate
 import jp.co.yumemi.android.code_check.databinding.FragmentRepositoryDetailBinding
 
+/**
+ * リポジトリ選択時に表示する画面
+ */
 class RepositoryDetailFragment : Fragment(R.layout.fragment_repository_detail) {
 
     private val args: RepositoryDetailFragmentArgs by navArgs()

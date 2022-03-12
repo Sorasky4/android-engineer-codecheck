@@ -15,6 +15,9 @@ import jp.co.yumemi.android.code_check.databinding.FragmentSearchRepositoriesBin
 import jp.co.yumemi.android.code_check.model.entity.Item
 import jp.co.yumemi.android.code_check.viewmodel.SearchRepositoriesViewModel
 
+/**
+ * リポジトリ検索画面
+ */
 class SearchRepositoriesFragment : Fragment(R.layout.fragment_search_repositories) {
     val viewModel: SearchRepositoriesViewModel by viewModels()
     private var _binding: FragmentSearchRepositoriesBinding? = null
@@ -25,10 +28,10 @@ class SearchRepositoriesFragment : Fragment(R.layout.fragment_search_repositorie
 
         _binding = FragmentSearchRepositoriesBinding.bind(view)
 
-        val _layoutManager = LinearLayoutManager(context!!)
-        val _dividerItemDecoration =
-            DividerItemDecoration(context!!, _layoutManager.orientation)
-        val _adapter = CustomAdapter(object : CustomAdapter.OnItemClickListener {
+        val layoutManager = LinearLayoutManager(context!!)
+        val dividerItemDecoration =
+            DividerItemDecoration(context!!, layoutManager.orientation)
+        val adapter = CustomAdapter(object : CustomAdapter.OnItemClickListener {
             override fun itemClick(Item: Item) {
                 gotoRepositoryFragment(Item)
             }
@@ -47,19 +50,19 @@ class SearchRepositoriesFragment : Fragment(R.layout.fragment_search_repositorie
             }
 
         binding.recyclerView.also {
-            it.layoutManager = _layoutManager
-            it.addItemDecoration(_dividerItemDecoration)
-            it.adapter = _adapter
+            it.layoutManager = layoutManager
+            it.addItemDecoration(dividerItemDecoration)
+            it.adapter = adapter
         }
 
         viewModel.data.observe(viewLifecycleOwner, {
-            _adapter.submitList(it)
+            adapter.submitList(it)
         })
     }
 
     fun gotoRepositoryFragment(Item: Item) {
-        val _action = SearchRepositoriesFragmentDirections
+        val action = SearchRepositoriesFragmentDirections
             .actionRepositoriesFragmentToRepositoryFragment(item = Item)
-        findNavController().navigate(_action)
+        findNavController().navigate(action)
     }
 }

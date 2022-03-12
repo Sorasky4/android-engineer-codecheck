@@ -13,7 +13,7 @@ import jp.co.yumemi.android.code_check.repository.api.SearchRepository
 import kotlinx.coroutines.launch
 
 /**
- * TwoFragment で使う
+ * リポジトリ検索画面のViewModel
  */
 class SearchRepositoriesViewModel(application: Application): AndroidViewModel(application) {
     private val context get() = getApplication<Application>().applicationContext
