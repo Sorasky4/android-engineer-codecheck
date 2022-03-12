@@ -65,4 +65,9 @@ class SearchRepositoriesFragment : Fragment(R.layout.fragment_search_repositorie
             .actionRepositoriesFragmentToRepositoryFragment(item = Item)
         findNavController().navigate(action)
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }
