@@ -11,14 +11,12 @@ import jp.co.yumemi.android.code_check.R
 import jp.co.yumemi.android.code_check.model.entity.Item
 
 // リストの変更を検知
-private object DiffCallBack: DiffUtil.ItemCallback<Item>() {
-    override fun areItemsTheSame(oldItem: Item, newItem: Item): Boolean
-    {
+private object DiffCallBack : DiffUtil.ItemCallback<Item>() {
+    override fun areItemsTheSame(oldItem: Item, newItem: Item): Boolean {
         return oldItem.name == newItem.name
     }
 
-    override fun areContentsTheSame(oldItem: Item, newItem: Item): Boolean
-    {
+    override fun areContentsTheSame(oldItem: Item, newItem: Item): Boolean {
         return oldItem == newItem
     }
 }
@@ -27,21 +25,19 @@ class CustomAdapter(
     private val itemClickListener: OnItemClickListener,
 ) : ListAdapter<Item, CustomAdapter.ViewHolder>(DiffCallBack) {
 
-    class ViewHolder(view: View): RecyclerView.ViewHolder(view)
+    class ViewHolder(view: View) : RecyclerView.ViewHolder(view)
 
-    interface OnItemClickListener{
+    interface OnItemClickListener {
         fun itemClick(Item: Item)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder
-    {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.layout_item, parent, false)
         return ViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int)
-    {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = getItem(position)
         holder.itemView.apply {
             findViewById<TextView>(R.id.repositoryNameView).text = item.name

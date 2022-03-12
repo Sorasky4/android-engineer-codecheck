@@ -15,13 +15,13 @@ import kotlinx.coroutines.launch
 /**
  * リポジトリ検索画面のViewModel
  */
-class SearchRepositoriesViewModel(application: Application): AndroidViewModel(application) {
+class SearchRepositoriesViewModel(application: Application) : AndroidViewModel(application) {
     private val context get() = getApplication<Application>().applicationContext
     private val _data = MutableLiveData<List<Item>>()
     val data: LiveData<List<Item>> get() = _data
 
     // 検索結果
-    fun searchResults(inputText: String){
+    fun searchResults(inputText: String) {
         viewModelScope.launch {
             _data.postValue(SearchRepository().getRepositories(context, inputText))
         }
