@@ -15,7 +15,7 @@ import kotlinx.coroutines.launch
 /**
  * TwoFragment で使う
  */
-class OneViewModel(application: Application): AndroidViewModel(application) {
+class SearchRepositoriesViewModel(application: Application): AndroidViewModel(application) {
     private val context get() = getApplication<Application>().applicationContext
     private val _data = MutableLiveData<List<Item>>()
     val data: LiveData<List<Item>> get() = _data

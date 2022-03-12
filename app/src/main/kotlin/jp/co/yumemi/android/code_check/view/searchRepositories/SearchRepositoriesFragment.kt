@@ -11,19 +11,19 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.*
 import jp.co.yumemi.android.code_check.R
-import jp.co.yumemi.android.code_check.databinding.FragmentOneBinding
+import jp.co.yumemi.android.code_check.databinding.FragmentSearchRepositoriesBinding
 import jp.co.yumemi.android.code_check.model.entity.Item
-import jp.co.yumemi.android.code_check.viewmodel.OneViewModel
+import jp.co.yumemi.android.code_check.viewmodel.SearchRepositoriesViewModel
 
-class OneFragment : Fragment(R.layout.fragment_one) {
-    val viewModel: OneViewModel by viewModels()
-    private var _binding: FragmentOneBinding? = null
+class SearchRepositoriesFragment : Fragment(R.layout.fragment_search_repositories) {
+    val viewModel: SearchRepositoriesViewModel by viewModels()
+    private var _binding: FragmentSearchRepositoriesBinding? = null
     private val binding get() = _binding!!
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        _binding = FragmentOneBinding.bind(view)
+        _binding = FragmentSearchRepositoriesBinding.bind(view)
 
         val _layoutManager = LinearLayoutManager(context!!)
         val _dividerItemDecoration =
@@ -58,7 +58,7 @@ class OneFragment : Fragment(R.layout.fragment_one) {
     }
 
     fun gotoRepositoryFragment(Item: Item) {
-        val _action = OneFragmentDirections
+        val _action = SearchRepositoriesFragmentDirections
             .actionRepositoriesFragmentToRepositoryFragment(item = Item)
         findNavController().navigate(_action)
     }
