@@ -1,4 +1,4 @@
-package jp.co.yumemi.android.code_check.view.searchRepositories
+package jp.co.yumemi.android.code_check.view.search_repositories
 
 import android.view.LayoutInflater
 import android.view.View
