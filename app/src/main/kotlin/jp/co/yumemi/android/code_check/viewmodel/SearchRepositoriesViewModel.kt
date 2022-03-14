@@ -35,7 +35,11 @@ class SearchRepositoriesViewModel(application: Application) : AndroidViewModel(a
                 _data.postValue(repositories)
             } catch (e: Exception) {
                 Log.e("SearchRepositoriesViewModel", e.message.toString())
-                _error.emit(e.message.toString())
+                when (e.message.toString().substring(0, 6)) {
+                    "Client" -> _error.emit("エラーが発生しました。別の文字を入力して検索してください。")
+                    "Unable" -> _error.emit("エラーが発生しました。通信環境を確認してください。")
+                    else -> _error.emit("検索処理でエラーが発生しました")
+                }
             }
         }
     }
