@@ -36,8 +36,8 @@ class SearchRepositoriesFragment : Fragment(R.layout.fragment_search_repositorie
         val dividerItemDecoration =
             DividerItemDecoration(context, layoutManager.orientation)
         val adapter = SearchRepositoryAdapter(object : SearchRepositoryAdapter.OnItemClickListener {
-            override fun itemClick(Item: Item) {
-                gotoRepositoryFragment(Item)
+            override fun itemClick(item: Item) {
+                gotoRepositoryFragment(item)
             }
         })
         binding.recyclerView.also {
@@ -65,9 +65,9 @@ class SearchRepositoriesFragment : Fragment(R.layout.fragment_search_repositorie
         }.launchIn(lifecycleScope)
     }
 
-    fun gotoRepositoryFragment(Item: Item) {
+    fun gotoRepositoryFragment(item: Item) {
         val action = SearchRepositoriesFragmentDirections
-            .actionRepositoriesFragmentToRepositoryFragment(item = Item)
+            .actionRepositoriesFragmentToRepositoryFragment(item = item)
         findNavController().navigate(action)
     }
 
