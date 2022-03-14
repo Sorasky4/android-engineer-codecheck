@@ -3,9 +3,11 @@
  */
 package jp.co.yumemi.android.code_check.view.search_repositories
 
+import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -51,6 +53,9 @@ class SearchRepositoriesFragment : Fragment(R.layout.fragment_search_repositorie
                 editText.text.toString().let {
                     viewModel.searchResults(it)
                 }
+                // キーボードを非表示にする
+                val inputManager = activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                inputManager.hideSoftInputFromWindow(view.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
                 return@setOnEditorActionListener true
             }
             return@setOnEditorActionListener false
