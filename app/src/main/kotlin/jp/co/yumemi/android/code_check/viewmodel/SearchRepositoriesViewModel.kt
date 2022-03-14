@@ -11,6 +11,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import jp.co.yumemi.android.code_check.model.entity.Item
 import jp.co.yumemi.android.code_check.repository.api.SearchRepository
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.launch
 
 /**
@@ -22,8 +24,8 @@ class SearchRepositoriesViewModel(application: Application) : AndroidViewModel(a
     private val _data = MutableLiveData<List<Item>>()
     val data: LiveData<List<Item>> get() = _data
 
-    private val _error = MutableLiveData<String>()
-    val error: LiveData<String> get() = _error
+    private val _error = MutableSharedFlow<String>()
+    val error: SharedFlow<String> get() = _error
 
     // 検索結果
     fun searchResults(inputText: String) {
@@ -33,7 +35,7 @@ class SearchRepositoriesViewModel(application: Application) : AndroidViewModel(a
                 _data.postValue(repositories)
             } catch (e: Exception) {
                 Log.e("SearchRepositoriesViewModel", e.message.toString())
-                _error.postValue(e.message.toString())
+                _error.emit(e.message.toString())
             }
         }
     }
