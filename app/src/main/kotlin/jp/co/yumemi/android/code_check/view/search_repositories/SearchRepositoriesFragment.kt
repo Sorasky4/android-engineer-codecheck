@@ -60,9 +60,9 @@ class SearchRepositoriesFragment : Fragment(R.layout.fragment_search_repositorie
             it.adapter = adapter
         }
 
-        viewModel.data.observe(viewLifecycleOwner, {
+        viewModel.data.observe(viewLifecycleOwner) {
             adapter.submitList(it)
-        })
+        }
 
         viewModel.error.onEach {
             Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
