@@ -1,7 +1,6 @@
 package jp.co.yumemi.android.code_check.repository.api
 
 import android.content.Context
-import android.util.Log
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.engine.android.*

@@ -16,10 +16,8 @@ import jp.co.yumemi.android.code_check.R
 import jp.co.yumemi.android.code_check.databinding.FragmentSearchRepositoriesBinding
 import jp.co.yumemi.android.code_check.model.entity.Item
 import jp.co.yumemi.android.code_check.viewmodel.SearchRepositoriesViewModel
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.launch
 
 /**
  * リポジトリ検索画面
