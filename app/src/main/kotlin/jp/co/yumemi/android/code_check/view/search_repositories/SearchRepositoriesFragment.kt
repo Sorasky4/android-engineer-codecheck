@@ -16,10 +16,8 @@ import jp.co.yumemi.android.code_check.R
 import jp.co.yumemi.android.code_check.databinding.FragmentSearchRepositoriesBinding
 import jp.co.yumemi.android.code_check.model.entity.Item
 import jp.co.yumemi.android.code_check.viewmodel.SearchRepositoriesViewModel
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.launch
 
 /**
  * リポジトリ検索画面
@@ -38,40 +36,38 @@ class SearchRepositoriesFragment : Fragment(R.layout.fragment_search_repositorie
         val dividerItemDecoration =
             DividerItemDecoration(context, layoutManager.orientation)
         val adapter = SearchRepositoryAdapter(object : SearchRepositoryAdapter.OnItemClickListener {
-            override fun itemClick(Item: Item) {
-                gotoRepositoryFragment(Item)
+            override fun itemClick(item: Item) {
+                gotoRepositoryFragment(item)
             }
         })
-
-        binding.searchInputText
-            .setOnEditorActionListener { editText, action, _ ->
-                if (action == EditorInfo.IME_ACTION_SEARCH) {
-                    editText.text.toString().let {
-                        viewModel.searchResults(it)
-                    }
-                    return@setOnEditorActionListener true
-                }
-                return@setOnEditorActionListener false
-            }
-
         binding.recyclerView.also {
             it.layoutManager = layoutManager
             it.addItemDecoration(dividerItemDecoration)
             it.adapter = adapter
         }
 
-        viewModel.data.observe(viewLifecycleOwner, {
+        binding.searchInputText.setOnEditorActionListener { editText, action, _ ->
+            if (action == EditorInfo.IME_ACTION_SEARCH) {
+                editText.text.toString().let {
+                    viewModel.searchResults(it)
+                }
+                return@setOnEditorActionListener true
+            }
+            return@setOnEditorActionListener false
+        }
+
+        viewModel.data.observe(viewLifecycleOwner) {
             adapter.submitList(it)
-        })
+        }
 
         viewModel.error.onEach {
             Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
         }.launchIn(lifecycleScope)
     }
 
-    fun gotoRepositoryFragment(Item: Item) {
+    fun gotoRepositoryFragment(item: Item) {
         val action = SearchRepositoriesFragmentDirections
-            .actionRepositoriesFragmentToRepositoryFragment(item = Item)
+            .actionRepositoriesFragmentToRepositoryFragment(item = item)
         findNavController().navigate(action)
     }
 
