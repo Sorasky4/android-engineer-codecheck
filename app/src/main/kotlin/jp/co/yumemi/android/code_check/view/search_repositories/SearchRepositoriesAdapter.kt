@@ -10,17 +10,6 @@ import androidx.recyclerview.widget.RecyclerView
 import jp.co.yumemi.android.code_check.R
 import jp.co.yumemi.android.code_check.model.entity.Item
 
-// リストの変更を検知
-private object DiffCallBack : DiffUtil.ItemCallback<Item>() {
-    override fun areItemsTheSame(oldItem: Item, newItem: Item): Boolean {
-        return oldItem.name == newItem.name
-    }
-
-    override fun areContentsTheSame(oldItem: Item, newItem: Item): Boolean {
-        return oldItem == newItem
-    }
-}
-
 /**
  * リポジトリ検索画面に表示するRecyclerViewのAdapter
  */
@@ -49,5 +38,16 @@ class SearchRepositoryAdapter(
                 itemClickListener.itemClick(item)
             }
         }
+    }
+}
+
+// リストの変更を検知
+private object DiffCallBack : DiffUtil.ItemCallback<Item>() {
+    override fun areItemsTheSame(oldItem: Item, newItem: Item): Boolean {
+        return oldItem.name == newItem.name
+    }
+
+    override fun areContentsTheSame(oldItem: Item, newItem: Item): Boolean {
+        return oldItem == newItem
     }
 }
