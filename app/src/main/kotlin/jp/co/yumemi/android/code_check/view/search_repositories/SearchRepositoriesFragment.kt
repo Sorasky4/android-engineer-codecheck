@@ -6,14 +6,20 @@ package jp.co.yumemi.android.code_check.view.search_repositories
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.EditorInfo
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.*
 import jp.co.yumemi.android.code_check.R
 import jp.co.yumemi.android.code_check.databinding.FragmentSearchRepositoriesBinding
 import jp.co.yumemi.android.code_check.model.entity.Item
 import jp.co.yumemi.android.code_check.viewmodel.SearchRepositoriesViewModel
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 
 /**
  * リポジトリ検索画面
@@ -57,6 +63,10 @@ class SearchRepositoriesFragment : Fragment(R.layout.fragment_search_repositorie
         viewModel.data.observe(viewLifecycleOwner, {
             adapter.submitList(it)
         })
+
+        viewModel.error.onEach {
+            Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
+        }.launchIn(lifecycleScope)
     }
 
     fun gotoRepositoryFragment(Item: Item) {
