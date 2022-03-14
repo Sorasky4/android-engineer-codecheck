@@ -17,7 +17,6 @@ import jp.co.yumemi.android.code_check.databinding.FragmentRepositoryDetailBindi
  * リポジトリ選択時に表示する画面
  */
 class RepositoryDetailFragment : Fragment(R.layout.fragment_repository_detail) {
-
     private val args: RepositoryDetailFragmentArgs by navArgs()
 
     private var _binding: FragmentRepositoryDetailBinding? = null
