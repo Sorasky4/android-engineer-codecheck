@@ -34,11 +34,18 @@ class SearchRepositoriesViewModel(application: Application) : AndroidViewModel(a
                 val repositories = SearchRepository().getRepositories(context, inputText)
                 _data.postValue(repositories)
             } catch (e: Exception) {
-                Log.e("SearchRepositoriesViewModel", e.message.toString())
-                when (e.message.toString().substring(0, 6)) {
-                    "Client" -> _error.emit("エラーが発生しました。別の文字を入力して検索してください。")
-                    "Unable" -> _error.emit("エラーが発生しました。通信環境を確認してください。")
-                    else -> _error.emit("検索処理でエラーが発生しました")
+                val message = e.message.toString()
+                Log.e("SearchRepositoriesViewModel", message)
+                when {
+                    Regex("invalid: 422").containsMatchIn(message) -> {
+                        _error.emit("エラーが発生しました。別の文字を入力して検索してください。")
+                    }
+                    Regex("Unable").containsMatchIn(message) -> {
+                        _error.emit("エラーが発生しました。通信環境を確認してください。")
+                    }
+                    else -> {
+                        _error.emit("検索処理でエラーが発生しました")
+                    }
                 }
             }
         }
