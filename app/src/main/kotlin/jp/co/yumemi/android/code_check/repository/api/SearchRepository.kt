@@ -17,11 +17,10 @@ class SearchRepository {
     suspend fun getRepositories(context: Context, inputText: String): List<Item> {
         val client = HttpClient(Android)
 
-        val response: HttpResponse =
-            client.get("https://api.github.com/search/repositories") {
-                header("Accept", "application/vnd.github.v3+json")
-                parameter("q", inputText)
-            }
+        val response: HttpResponse = client.get("https://api.github.com/search/repositories") {
+            header("Accept", "application/vnd.github.v3+json")
+            parameter("q", inputText)
+        }
 
         val jsonBody = JSONObject(response.receive<String>())
         val jsonItems = jsonBody.optJSONArray("items") ?: JSONArray()

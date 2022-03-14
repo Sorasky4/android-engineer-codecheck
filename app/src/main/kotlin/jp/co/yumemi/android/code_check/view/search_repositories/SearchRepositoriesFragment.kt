@@ -40,22 +40,20 @@ class SearchRepositoriesFragment : Fragment(R.layout.fragment_search_repositorie
                 gotoRepositoryFragment(Item)
             }
         })
-
-        binding.searchInputText
-            .setOnEditorActionListener { editText, action, _ ->
-                if (action == EditorInfo.IME_ACTION_SEARCH) {
-                    editText.text.toString().let {
-                        viewModel.searchResults(it)
-                    }
-                    return@setOnEditorActionListener true
-                }
-                return@setOnEditorActionListener false
-            }
-
         binding.recyclerView.also {
             it.layoutManager = layoutManager
             it.addItemDecoration(dividerItemDecoration)
             it.adapter = adapter
+        }
+
+        binding.searchInputText.setOnEditorActionListener { editText, action, _ ->
+            if (action == EditorInfo.IME_ACTION_SEARCH) {
+                editText.text.toString().let {
+                    viewModel.searchResults(it)
+                }
+                return@setOnEditorActionListener true
+            }
+            return@setOnEditorActionListener false
         }
 
         viewModel.data.observe(viewLifecycleOwner) {
