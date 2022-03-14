@@ -13,6 +13,9 @@ import org.json.JSONArray
 import org.json.JSONObject
 import java.util.*
 
+/**
+ * リポジトリ検索用のリポジトリ
+ */
 class SearchRepository {
     suspend fun getRepositories(context: Context, inputText: String): List<Item> {
         val client = HttpClient(Android)
