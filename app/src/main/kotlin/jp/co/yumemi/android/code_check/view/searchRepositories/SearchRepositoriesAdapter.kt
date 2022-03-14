@@ -1,4 +1,4 @@
-package jp.co.yumemi.android.code_check.view.search_repositories
+package jp.co.yumemi.android.code_check.view.searchRepositories
 
 import android.view.LayoutInflater
 import android.view.View
@@ -24,8 +24,7 @@ class SearchRepositoryAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.layout_item, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.layout_item, parent, false)
         return ViewHolder(view)
     }
 

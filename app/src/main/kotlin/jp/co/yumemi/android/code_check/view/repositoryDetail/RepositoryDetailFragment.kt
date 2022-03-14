@@ -1,7 +1,7 @@
 /*
  * Copyright © 2021 YUMEMI Inc. All rights reserved.
  */
-package jp.co.yumemi.android.code_check.view.repository_detail
+package jp.co.yumemi.android.code_check.view.repositoryDetail
 
 import android.os.Bundle
 import android.util.Log
@@ -17,7 +17,6 @@ import jp.co.yumemi.android.code_check.databinding.FragmentRepositoryDetailBindi
  * リポジトリ選択時に表示する画面
  */
 class RepositoryDetailFragment : Fragment(R.layout.fragment_repository_detail) {
-
     private val args: RepositoryDetailFragmentArgs by navArgs()
 
     private var _binding: FragmentRepositoryDetailBinding? = null

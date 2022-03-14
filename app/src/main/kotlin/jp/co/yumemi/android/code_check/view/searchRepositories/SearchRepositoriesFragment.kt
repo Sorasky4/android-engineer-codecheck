@@ -1,7 +1,7 @@
 /*
  * Copyright © 2021 YUMEMI Inc. All rights reserved.
  */
-package jp.co.yumemi.android.code_check.view.search_repositories
+package jp.co.yumemi.android.code_check.view.searchRepositories
 
 import android.content.Context
 import android.os.Bundle
@@ -54,8 +54,12 @@ class SearchRepositoriesFragment : Fragment(R.layout.fragment_search_repositorie
                     viewModel.searchResults(it)
                 }
                 // キーボードを非表示にする
-                val inputManager = activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                inputManager.hideSoftInputFromWindow(view.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
+                val inputManager =
+                    activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                inputManager.hideSoftInputFromWindow(
+                    view.windowToken,
+                    InputMethodManager.HIDE_NOT_ALWAYS
+                )
                 return@setOnEditorActionListener true
             }
             return@setOnEditorActionListener false
